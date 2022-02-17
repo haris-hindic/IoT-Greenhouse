@@ -1,0 +1,19 @@
+.cup {
+	position: relative;
+	width: 100px;
+	height: 150px;
+	border: 10px solid grey;
+	border-top: none;
+	border-radius: 0 0 20px 20px;
+	margin: 15px auto;
+	overflow: hidden;
+}
+
+.water {
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	bottom: 0;
+	background: blue;
+	transition: all 1s;
+}
