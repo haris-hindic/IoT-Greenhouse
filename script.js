@@ -127,7 +127,7 @@ window.addEventListener('DOMContentLoaded', event => {
 		if (waterTank1Value > 0 && !fillingTank1) {
 			waterTank1.set(waterTank1Value - 20);
 		}
-	}, 5000);
+	}, 10000);
 });
 
 document.querySelector('#fill1').addEventListener('click', () => {
