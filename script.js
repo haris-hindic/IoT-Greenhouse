@@ -141,5 +141,5 @@ document.querySelector('#fill1').addEventListener('click', () => {
 	setTimeout(() => {
 		waterTank1.set(100);
 		fillingTank1 = false;
-	}, 5000);
+	}, 2500);
 });
