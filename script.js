@@ -135,7 +135,7 @@ document.querySelector('#fill1').addEventListener('click', () => {
 
 	document.querySelector('#water1Title').innerHTML = `Water tank - <img
 	style="width: 50px; height: 50px"
-	src="/images/filling.gif"
+	src="https://i.imgur.com/yJQKtNT.gif"
 /> filling`;
 
 	setTimeout(() => {
