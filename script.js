@@ -22,7 +22,6 @@ let waterTank1 = firebase.database().ref('Data').child('waterTank1');
 let openRoof = firebase.database().ref('Controls').child('openRoof');
 let lighting = firebase.database().ref('Controls').child('lighting');
 let fillingTank1 = false;
-let fillingTank2 = false;
 
 //dom elements
 
@@ -78,15 +77,35 @@ let waterTank1Value;
 waterTank1.on('value', data => {
 	waterTank1Value = data.val();
 	let txt;
-	if (waterTank1Value === 100) txt = 'Full';
-	if (waterTank1Value === 80) txt = 'Full';
-	if (waterTank1Value === 60) txt = 'Half full';
-	if (waterTank1Value === 40) txt = '1/3 full';
-	if (waterTank1Value === 20) txt = '1/3 full';
-	if (waterTank1Value === 0) txt = 'Empty';
+	if (waterTank1Value === 100) {
+		txt = 'Full';
+		document.querySelector('#fill1').disabled = true;
+	}
+	if (waterTank1Value === 80) {
+		txt = 'Full';
+		document.querySelector('#fill1').disabled = false;
+	}
+	if (waterTank1Value === 60) {
+		txt = 'Half full';
+		document.querySelector('#fill1').disabled = false;
+	}
+	if (waterTank1Value === 40) {
+		txt = '1/3 full';
+		document.querySelector('#fill1').disabled = false;
+	}
+	if (waterTank1Value === 20) {
+		txt = '1/3 full';
+		document.querySelector('#fill1').disabled = false;
+	}
+	if (waterTank1Value === 0) {
+		txt = 'Empty';
+		document.querySelector('#fill1').disabled = false;
+	}
 	document.querySelector('#water1Title').innerHTML = `Water tank - ${txt}`;
 	document.querySelector('#water1').style.top = 100 - data.val() + '%';
 });
+
+//events
 
 document.querySelector('#lighting').addEventListener('change', e => {
 	lighting.set(e.target.checked);
@@ -113,8 +132,14 @@ window.addEventListener('DOMContentLoaded', event => {
 
 document.querySelector('#fill1').addEventListener('click', () => {
 	fillingTank1 = true;
-	while (waterTank1Value < 100) {
-		waterTank1.set(waterTank1Value + 25);
-	}
-	fillingTank1 = false;
+
+	document.querySelector('#water1Title').innerHTML = `Water tank - <img
+	style="width: 50px; height: 50px"
+	src="/images/filling.gif"
+/> filling`;
+
+	setTimeout(() => {
+		waterTank1.set(100);
+		fillingTank1 = false;
+	}, 5000);
 });
